@@ -15,10 +15,10 @@ class CreateBukusTable extends Migration
     {
         Schema::create('bukus', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('judul',30);
-            $table->string('penerbit',20);
-            $table->tinyInteger('tahun_terbit',5);
-            $table->string('pengarang',50);
+            $table->string('judul');
+            $table->string('penerbit');
+            $table->tinyInteger('tahun_terbit');
+            $table->string('pengarang');
             $table->timestamps();
         });
     }
