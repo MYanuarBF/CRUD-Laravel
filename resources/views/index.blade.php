@@ -7,22 +7,25 @@
     <title>Index Page</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
   </head>
+
   <body>
     <div class="container">
     <br />
+
     @if (\Session::has('success'))
       <div class="alert alert-success">
         <p>{{ \Session::get('success') }}</p>
       </div><br />
      @endif
+
     <table class="table table-striped">
     <thead>
       <tr>
         <th>ID</th>
         <th>Judul Buku</th>
-        <th>Keterangan</th>
-        <th>Penerbit</th>
-        <th>Stock</th>
+        <th>penerbit</th>
+        <th>tanggal terbit</th>
+        <th>pengarang</th>
         <th colspan="2">Action</th>
       </tr>
     </thead>
@@ -36,9 +39,9 @@
         <td>{{$book['tahun_terbit']}}</td>
         <td>{{$book['pengarang']}}</td>
         
-        <td><a href="{{action('BookController@edit', $book['id'])}}" class="btn btn-warning">Edit</a></td>
+        <td><a href="{{action('BukuController@edit', $book['id'])}}" class="btn btn-warning">Edit</a></td>
         <td>
-          <form action="{{action('BookController@destroy', $book['id'])}}" method="post">
+          <form action="{{action('BukuController@destroy', $book['id'])}}" method="post">
             @csrf
             <input name="_method" type="hidden" value="DELETE">
             <button class="btn btn-danger" type="submit">Delete</button>

@@ -38,7 +38,7 @@ class BukuController extends Controller
     {
         //
         $book = new \App\Buku;
-        $book->judul = $request->get('jududl');
+        $book->judul = $request->get('judul');
         $book->penerbit = $request->get('penerbit');
         $book->tahun_terbit = $request->get('tahun_terbit');
         $book->pengarang = $request->get('pengarang');
@@ -67,6 +67,8 @@ class BukuController extends Controller
     public function edit($id)
     {
         //
+        $buku = \App\Buku::find($id);
+        return view('edit',compact('buku','id'));   
     }
 
     /**
@@ -79,6 +81,14 @@ class BukuController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $buku= \App\Buku::find($id);
+        $buku->judul = $request->get('judul');
+        $buku->penerbit = $request->get('penerbit');
+        $buku->tahun_terbit = $request->get('tahun_terbit');
+        $buku->pengarang = $request->get('pengarang');
+        $buku->save();
+        return redirect('buku')->with('success', 'Data buku telah diubah');   
+    
     }
 
     /**
@@ -90,5 +100,8 @@ class BukuController extends Controller
     public function destroy($id)
     {
         //
+        $buku = \App\Buku::find($id);
+        $buku->delete();
+        return redirect('buku')->with('success','Data buku telah di hapus');
     }
 }
